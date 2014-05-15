@@ -12,7 +12,27 @@
 		$data[] = array('host'=>$row["Host"],'user'=>$row["User"],'password'=>$row["Password"]);
 	}
 	
-	while($row = mysql_fetch_array($result1)){
+?>
+	<table style="border:1px dashed #0099FF;">
+	  <tr style="border:1px dashed #0099FF;"><td width="140px;">用户</td><td width="200px;">主机</td><td width="280px;">权限</td><td width="100px;">操作</td></tr>
+	<?php
+		foreach($data as $item){
+			$user_host = "'".$item['user']."'@'".$item['host']."'";
+			if(empty($item['user']))
+				$item['user'] = "任意";
+			//var_dump($user_host);
+			$grant = mysql_query("show grants for ".$user_host.";");
+			//var_dump($item['user'],$grant);echo "-----------------------------";
+			$tmp_grant_str = "";
+			while($row = mysql_fetch_array($grant)){
+				$tmp_grant_str .= $row[0];
+			}
+			echo "<tr><td>".$item['user']."</td><td>".$item["host"]."</td><td>".$tmp_grant_str."</td><td></td></tr>";
+		}
+	?>
+	</table>
+	<?php
+		while($row = mysql_fetch_array($result1)){
 		var_dump($row);
 		echo "<hr />";
 	}
