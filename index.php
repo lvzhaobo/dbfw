@@ -13,8 +13,26 @@
 	}
 	
 ?>
-	<table style="border:1px dashed #0099FF;">
-	  <tr style="border:1px dashed #0099FF;"><td width="140px;">用户</td><td width="200px;">主机</td><td width="280px;">权限</td><td width="100px;">操作</td></tr>
+<html>
+  <head>
+	<style type="text/css">
+	  table td {
+		border: 0.1em solid #000000;
+	  }
+	  table {
+	    border-collapse: collapse;
+	  }
+	</style>
+  </head>
+  <body>
+    <div>
+	  <a href="adduser.php">添加用户</a>
+	</div>
+	<table>
+	  <thead style="background-color:#E5E5E5;">
+	    <tr><td width="140px;">用户</td><td width="200px;">主机</td><td width="280px;">权限</td><td width="100px;">操作</td></tr>
+	  </thead>
+	  <tbody>
 	<?php
 		foreach($data as $item){
 			$user_host = "'".$item['user']."'@'".$item['host']."'";
@@ -22,19 +40,22 @@
 				$item['user'] = "任意";
 			//var_dump($user_host);
 			$grant = mysql_query("show grants for ".$user_host.";");
-			//var_dump($item['user'],$grant);echo "-----------------------------";
+			if(!$grant)
+			var_dump("show grants for ".$user_host.";");echo "-----------------------------";
 			$tmp_grant_str = "";
 			while($row = mysql_fetch_array($grant)){
 				$tmp_grant_str .= $row[0];
 			}
-			echo "<tr><td>".$item['user']."</td><td>".$item["host"]."</td><td>".$tmp_grant_str."</td><td></td></tr>";
+			echo "<tr><td>".$item['user']."</td><td>".$item["host"]."</td><td>".$tmp_grant_str."</td><td><a href='edit.php?user=".$item['user']."'>编辑</a></td></tr>";
 		}
 	?>
+	  </tbody>
 	</table>
+  </body>
 	<?php
 		while($row = mysql_fetch_array($result1)){
-		var_dump($row);
-		echo "<hr />";
+		//var_dump($row);
+		//echo "<hr />";
 	}
   
 	//var_dump($data);
