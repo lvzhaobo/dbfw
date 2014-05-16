@@ -3,7 +3,7 @@
     <form action="db.php?action=adduser" method="post">
     <table>
 	  <tr><th>ำรปงร๛</th><td><input name="username" /></td></tr>
-	  <tr><th></th><td></td></tr>
+	  <tr><th>รÜย๋</th><td><input name="password" type="password" /></td></tr>
 	  <tr><th></th><td></td></tr>
 	  <tr><th></th><td></td></tr>
 	</table>
