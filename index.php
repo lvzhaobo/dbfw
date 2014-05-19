@@ -46,16 +46,16 @@
 			while($row = mysql_fetch_array($grant)){
 				$tmp_grant_str .= $row[0];
 			}
-			echo "<tr><td>".$item['user']."</td><td>".$item["host"]."</td><td>".$tmp_grant_str."</td><td><a href='edit.php?user=".$item['user']."'>±à¼­</a></td></tr>";
+			echo "<tr><td>".$item['user']."</td><td>".$item["host"]."</td><td>".$tmp_grant_str."</td><td><a href='edituser.php?user=".$item['user']."'>±à¼­</a></td></tr>";
 		}
 	?>
 	  </tbody>
 	</table>
   </body>
 	<?php
-		while($row = mysql_fetch_array($result1)){
+		//while($row = mysql_fetch_array($result1)){
 		//var_dump($row);
 		//echo "<hr />";
-	}
+	//}
   
 	//var_dump($data);
