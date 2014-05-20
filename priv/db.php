@@ -28,7 +28,7 @@ class my_user
 	public function getUserByName($username){
 		$result = mysql_query("select * from user where User='".$username."';");
 		$data = mysql_fetch_assoc($result);
-		var_dump($data);
+		//var_dump($data);
 		return $data;
 	}
 	
@@ -60,10 +60,10 @@ class my_user
 		$password = $_POST["password"];
 		$priv = join($_POST["auth"],",");
 		$sql = "REVOKE ALL ON *.* FROM '".$username."'@'%'";
-		$sql1 = "GRANT ".$priv." ON * . * TO '".$username."'@'%' IDENTIFIED BY '".$password."' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;";
+		$sql1 = "GRANT ".$priv." ON user.* TO '".$username."'@'%' IDENTIFIED BY '".$password."' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;";
 		mysql_query($sql);
 		mysql_query($sql1);
-		var_dump(mysql_error(),$sql,$sql1);
+		//var_dump(mysql_error(),$sql,$sql1);
 		
 		$user->close();
 		redirect();
