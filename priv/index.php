@@ -17,6 +17,12 @@
 	<?php include "../web/_nav.php"?>
 	<div id="content">
 	  <div id="main" style="padding:10px 0;">
+		<p>
+		  1.可以控制对数据库、表、列等的控制
+		  2.可以根据主机IP、时间等进行控制
+		  3.可以对用户赋予（GRANT）或取消（REVOKE）权限
+		  4.基于角色的权限控制
+		</p>
 		<?php
 			$conn = mysql_connect("localhost","root","");
 			mysql_select_db("mysql");
