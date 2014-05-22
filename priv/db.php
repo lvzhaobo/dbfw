@@ -39,6 +39,15 @@ class my_user
 		mysql_query($sql1);
 	}
 	
+	public function getStatus(){
+		$sql = "SHOW STATUS;";
+		$result = mysql_query($sql);
+		while($row = mysql_fetch_array($result)){
+			$data[] = $row;
+		}
+		return $data;
+	}
+	
 	public function close(){
 		mysql_close($this->conn);
 	}
