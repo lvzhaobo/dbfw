@@ -12,10 +12,16 @@
 	<div id="content">
 	  <div id="main">
 	    <?php
-		    $a = mssql_connect("localhost",1443,"sa","sa");
-			
-			var_dump($a);
-		?>
+	    	$data = file_get_contents("data.txt");
+	    	$data_array = explode("\n",$data);
+	    	foreach($data_array as $item){
+	    		$item_array = explode("\t",$item);
+	    		echo $item."<br />";
+	    		foreach($item_array as $v){
+	    			//echo $v;
+	    		}
+	    	}
+	    ?>
 	    <?php 
 			include "priv/db.php";
 			$db = new my_user();

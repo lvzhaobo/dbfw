@@ -24,7 +24,16 @@
 		  4.基于角色的权限控制
 		</p>
 		<?php
-			$conn = mysql_connect("localhost","root","");
+			try{
+				exec("python2.7 ../test1.py");
+			}catch(Exception $e){
+				var_dump($e->getMessage());
+			}
+
+			$data = file_get_contents("../priv.txt");
+	    	$data_array = explode("\n",$data);
+	    	
+			/*$conn = mysql_connect("localhost","root","");
 			mysql_select_db("mysql");
 			$result = mysql_query("select * from user;");
 			$data = array();
@@ -32,7 +41,7 @@
 				//var_dump($row);
 				//echo "<hr />";
 				$data[] = array('host'=>$row["Host"],'user'=>$row["User"],'password'=>$row["Password"]);
-			}
+			}*/
 			
 		?>
 		<div style="height:24px;padding:5px 2%;">
@@ -49,19 +58,21 @@
 		  </thead>
 		  <tbody>
 			<?php
-				foreach($data as $item){
-					$user_host = "'".$item['user']."'@'".$item['host']."'";
-					if(empty($item['user']))
-						$item['user'] = "任意";
+				foreach($data_array as $item_v){
+					$item = explode("\t",$item_v);
+					$user_host = "'".$item[0]."'@'".$item[1]."'";
+					if(empty($item[0]))
+						$item[0] = "任意";
 					//var_dump($user_host);
-					$grant = mysql_query("show grants for ".$user_host.";");
+					//$grant = mysql_query("show grants for ".$user_host.";");
 					//if(!$grant)
 						//var_dump("show grants for ".$user_host.";");echo "-----------------------------";
 					$tmp_grant_str = "";
-					while($row = mysql_fetch_array($grant)){
-						$tmp_grant_str .= $row[0]."<br />";
-					}
-					echo "<tr><td>".$item['user']."</td><td>".$item["host"]."</td><td>".$tmp_grant_str."</td><td><a href='edituser.php?user=".$item['user']."'>编辑</a></td></tr>";
+					//while($row = mysql_fetch_array($grant)){
+						//$tmp_grant_str .= $row[0]."<br />";
+					//}
+					$tmp_grant_str = "";
+					echo "<tr><td>".$item[0]."</td><td>".$item[1]."</td><td>".$tmp_grant_str."</td><td><a href='edituser.php?user=".$item[0]."'>编辑</a></td></tr>";
 				}
 			?>
 			</tbody>
