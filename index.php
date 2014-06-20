@@ -11,6 +11,11 @@
 	<?php include "web/_nav.php"?>
 	<div id="content">
 	  <div id="main">
+	    <?php
+		    $a = mssql_connect("localhost",1443,"sa","sa");
+			
+			var_dump($a);
+		?>
 	    <?php 
 			include "priv/db.php";
 			$db = new my_user();
