@@ -11,6 +11,9 @@
 	    border-collapse: collapse;
 	  }
 	</style>
+	<link rel="stylesheet" href="../web/flexigrid-1.1/css/flexigrid.css" type="text/css"></link>  
+<script src="//code.jquery.com/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="../web/flexigrid-1.1/js/flexigrid.pack.js"></script>  
   </head>
   <body>
     <?php include '../web/_header.php'?>
@@ -23,6 +26,45 @@
 		  3.可以对用户赋予（GRANT）或取消（REVOKE）权限
 		  4.基于角色的权限控制
 		</p>
+		
+		<div id="flex1" class="flex1" style="width:100%;height:100%;"></div>
+<script type="text/javascript">
+
+$("#flex1").flexigrid({
+	url: '../tmp/a.php',
+	dataType: 'json',
+	colModel : [
+		{display: '', name : 'id', width : 40, sortable : true, align: 'left'},
+		{display: '主机', name : 'host', width : 180, sortable : true, align: 'left'},
+		{display: '用户名', name : 'username', width : 180, sortable : true, align: 'left'},
+		{display: '权限', name : 'priv', width : 120, sortable : true, align: 'left'}
+		],
+	buttons : [
+		{name: '添加', bclass: 'add', onpress : test},
+		{name: '编辑', bclass: 'edit', onpress : test},
+		{name: '删除', bclass: 'delete', onpress : test},
+		{separator: true}
+		],
+	searchitems : [
+		{display: 'ISO', name : 'host'},
+		{display: 'Name', name : 'username', isdefault: true}
+		],
+	sortname: "iso",
+	sortorder: "asc",
+	usepager: true,
+	title: 'Countries',
+	useRp: true,
+	rp: 15,
+	showTableToggleBtn: true,
+	width: 700,
+	height: 200
+});
+function test(){
+	location = "adduser.php";
+}
+
+</script>
+
 		<?php
 			try{
 				exec("python2.7 ../test1.py");
