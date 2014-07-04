@@ -1,18 +1,11 @@
-<?php 
+ï»¿<?php 
 	$host = $_SERVER["REQUEST_SCHEME"]."://".$_SERVER["HTTP_HOST"]."/dbfw";
 ?>
 	  <div id="nav">
 	    <div id="nav_content">
 		  <ul>
-		    <li><a href="<?php echo $host.'/index.php'?>" title="×´Ì¬">×´Ì¬</a></li>
-		    <li class='<?php echo preg_match("/priv/",$_SERVER["REQUEST_URI"])?"seleted":""?>'><a href="<?php echo $host.'/priv/index.php'?>" title="È¨ÏÞ¹ÜÀí">È¨ÏÞ¹ÜÀí</a></li>
-			<li class='<?php echo preg_match("/acl/",$_SERVER["REQUEST_URI"])?"seleted":""?>'><a href="<?php echo $host.'/acl/index.php'?>" title="·ÃÎÊ¿ØÖÆ">·ÃÎÊ¿ØÖÆ</a></li>
-			<li class='<?php echo preg_match("/audit/",$_SERVER["REQUEST_URI"])?"seleted":""?>'><a href="<?php echo $host.'/audit/index.php'?>" title="Éó¼ÆÏµÍ³">Éó¼ÆÏµÍ³</a></li>
-			<li class='<?php echo preg_match("/report/",$_SERVER["REQUEST_URI"])?"seleted":""?>'><a href="<?php echo $host.'/log/index.php'?>" title="ÈÕÖ¾">±¨±í¸æ¾¯</a></li>
-			<li class='<?php echo preg_match("/log/",$_SERVER["REQUEST_URI"])?"seleted":""?>'><a href="<?php echo $host.'/log/index.php'?>" title="ÈÕÖ¾">ÈÕÖ¾</a></li>
-			<li class='<?php echo preg_match("/firewall/",$_SERVER["REQUEST_URI"])?"seleted":""?>'><a href="<?php echo $host.'/log/index.php'?>" title="·À»ðÇ½">·À»ðÇ½</a></li>
-			<li class='<?php echo preg_match("/network/",$_SERVER["REQUEST_URI"])?"seleted":""?>'><a href="<?php echo $host.'/log/index.php'?>" title="ÍøÂç">ÍøÂç</a></li>
-			<li class='<?php echo preg_match("/system/",$_SERVER["REQUEST_URI"])?"seleted":""?>'><a href="<?php echo $host.'/system/index.php'?>" title="ÍøÂç">ÏµÍ³</a></li>
+		    <li><a href="<?php echo $host.'/index.php'?>" title="Home">Home</a></li>
+		    <li class='<?php echo preg_match("/priv/",$_SERVER["REQUEST_URI"])?"seleted":""?>'><a href="<?php echo $host.'/priv/index.php'?>" title="Privilege">Privilege</a></li>
 		  </ul>
 		</div>
 	  </div>

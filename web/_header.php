@@ -5,7 +5,7 @@
 	    <div class="page_title">
 		  <div class="title_style" style="float:left;">
 		    <div style="width:380px;border-right:1px solid #0099FF;float:left;">
-		      <span style="font-size:28px;">Êý¾Ý¿â·À»ðÇ½--DBFW</span><br />
+		      <span style="font-size:28px;">DBFW</span><br />
 			  <span style="font-size:12px;color:#0099FF;"></span><br />
 		      <span style="font-size:36px;color:#0099FF;"></span>
 			</div>

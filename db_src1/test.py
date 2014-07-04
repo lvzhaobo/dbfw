@@ -1,6 +1,5 @@
 import os, sys, string,getopt
 import mysql.connector
-import json
 
 def main():
     print sys.argv[0]
@@ -60,8 +59,6 @@ def main():
     cursor.close()
     conn.close()
 class mysql_db(object):
-    conn = ""
-    cursor = ""
     def test(self):
         print "test"
     
@@ -72,7 +69,7 @@ class mysql_db(object):
             print e
         
         cursor = conn.cursor()
-        
+		
         sql = "select * from user"
         cursor.execute(sql)
         alldata = cursor.fetchall()
@@ -88,39 +85,17 @@ class mysql_db(object):
 
         cursor.close()
         conn.close()
-    def adduser(self,post_data):
-        try:
-            conn = mysql.connector.connect(host='localhost', user='root',passwd='111111',db='mysql')
-        except Exception, e:
-            print e
-		
-        try:
-            data = json.loads(post_data)
-            cursor = conn.cursor()
-            sql_use_db = "use mysql;"
-            cursor.execute(sql_use_db)
-            
-            sql_add_user = "insert into user (Host,User) values('%','"+data["username"]+"');"
-            cursor.execute(sql_add_user)
-            
-            conn.commit()
-        except Exception,e:
-            print e
-        print json.loads(data),"dbfw lvzb liun"
         
-        cursor.close()
-        conn.close()
-        
-def adduser():
-    #a = mysql_db()
-    #a.test()
-    print "adduser"
+    def adduser():
+        #a = mysql_db()
+        #a.test()
+        print "adduser"
     
 if __name__ == "__main__":
     opts, args = getopt.getopt(sys.argv[1:], "ha:")
     if(args[0] == "adduser"):
         a = mysql_db()
-        a.adduser(args[1])
+        a.adduser()
         
     if args[0]=="list":
         a = mysql_db()

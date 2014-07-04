@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="../src/main.css" />
-    <title>数据库防火墙--DBFW</title>
+    <title>DBFW</title>
     <style type="text/css">
       table td {
         border: 0.1em solid #000000;
@@ -20,12 +20,6 @@
     <?php include "../web/_nav.php"?>
     <div id="content">
       <div id="main" style="padding:10px 0;">
-        <p>
-          1.可以控制对数据库、表、列等的控制
-          2.可以根据主机IP、时间等进行控制
-          3.可以对用户赋予（GRANT）或取消（REVOKE）权限
-          4.基于角色的权限控制
-        </p>
         
         <div id="flex1" class="flex1" style="width:100%;height:100%;"></div>
 <script type="text/javascript">
@@ -65,7 +59,7 @@ function test(){
 
 </script>
 
-        <?php
+        <?php/*
             try{
                 exec("python2.7 ../test1.py");
             }catch(Exception $e){
@@ -74,7 +68,7 @@ function test(){
 
             $data = file_get_contents("../priv.txt");
             $data_array = explode("\n",$data);
-            
+            */
             /*$conn = mysql_connect("localhost","root","");
             mysql_select_db("mysql");
             $result = mysql_query("select * from user;");
@@ -86,6 +80,7 @@ function test(){
             }*/
             
         ?>
+		<?php /*?>
         <div style="height:24px;padding:5px 2%;">
           <div style="float:left;">
             <span style="font-weight:bold;">用户权限</span>
@@ -119,6 +114,7 @@ function test(){
             ?>
             </tbody>
           </table>
+		  <?php */?>
         </div>
       <div class="clearfloat"></div>
     </div>
