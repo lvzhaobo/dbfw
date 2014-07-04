@@ -34,7 +34,7 @@ class my_user
 	
 	public function adduser($username,$password,$priv){
 		$sql = "CREATE USER '".$username."'@'%' IDENTIFIED BY '".$password."';";
-		$sql1 = "GRANT ".$priv." ON * . * TO '".$username."'@'%' IDENTIFIED BY '".$password."' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;";
+		$sql1 = "GRANT ".$priv." ON * . * TO '".$username."'@'%' IDENTIFIED BY '".$password."';";
 		mysql_query($sql);
 		mysql_query($sql1);
 	}

@@ -7,10 +7,10 @@
 	
 	?>
 	<script type="text/javascript">
-	    location="../priv/index.php";
+	    //location="../priv/index.php";
 	</script>
 <?
-	var_dump($output);
+	var_dump($action,$output,$result);
 	die;
 	exec("python2.7 test.py list",$output,$result);
 	//var_dump($output);

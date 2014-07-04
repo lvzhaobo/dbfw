@@ -13,7 +13,7 @@
 	  <fieldset>
 	  <legend>添加用户</legend>
 	  <div>
-    <form action="db.php?action=adduser" method="post">
+    <form action="../db_src/dispatch.php?action=adduser" method="post">
     <table>
 	  <tr><th>用户名</th><td><input name="username" value=""/></td></tr>
 	  <tr><th>密码</th><td><input name="password" type="password" value=""/></td></tr>

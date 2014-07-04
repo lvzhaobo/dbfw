@@ -89,19 +89,42 @@ class mysql_db(object):
         cursor.close()
         conn.close()
     def adduser(self,post_data):
+        print post_data
         try:
             conn = mysql.connector.connect(host='localhost', user='root',passwd='111111',db='mysql')
         except Exception, e:
             print e
-		
+        
         try:
+            
+            
             data = json.loads(post_data)
             cursor = conn.cursor()
             sql_use_db = "use mysql;"
             cursor.execute(sql_use_db)
             
+            #sql_a = "GRANT all privileges ON * . * TO 'lv7'@'localhost' IDENTIFIED BY 'lv7';"
+            #cursor.execute(sql_a)
+            priv_str = ""
+            
+            priv = []
+            for item in data["auth"]:
+                priv.append(data["auth"][item])
+            priv_str = ",".join(data["auth"])
+            print priv_str
+            
+            sql = "CREATE USER '"+data["username"]+"'@'localhost' IDENTIFIED BY '"+data["password"]+"';"
+            sql_1 = "GRANT all privileges ON * . * TO '"+data["username"]+"'@'localhost' IDENTIFIED BY '"+data["password"]+"';"
+            #print sql_a,sql_1
+            #print sql,sql_1
             sql_add_user = "insert into user (Host,User) values('%','"+data["username"]+"');"
-            cursor.execute(sql_add_user)
+            cursor.execute(sql)
+            cursor.execute(sql_1)
+            
+            sql_show_grants = "show grants for '"+data["username"]+"'@'localhost'"
+            print sql_show_grants
+            a = cursor.execute(sql_show_grants)
+            print a
             
             conn.commit()
         except Exception,e:
@@ -119,6 +142,7 @@ def adduser():
 if __name__ == "__main__":
     opts, args = getopt.getopt(sys.argv[1:], "ha:")
     if(args[0] == "adduser"):
+        print "aa"
         a = mysql_db()
         a.adduser(args[1])
         
