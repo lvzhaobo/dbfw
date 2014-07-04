@@ -14,9 +14,9 @@
 	  <legend>±‡º≠”√ªß</legend>
 	  <div>
     <?php
-		include 'db.php';
-		$user = new my_user();
-		$data = $user->getUserByName($_GET["user"]);
+		//include 'db.php';
+		//$user = new my_user();
+		//$data = $user->getUserByName($_GET["user"]);
 	?>
     <form action="db.php?action=edituser" method="post">
     <table>

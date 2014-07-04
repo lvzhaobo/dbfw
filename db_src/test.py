@@ -80,7 +80,17 @@ class mysql_db(object):
         if alldata:
             data = []
             for rec in alldata:
-                print rec[0]+"\t"+rec[1]
+                try:
+                    sql_show_grants = "show grants for '"+rec[1]+"'@'"+rec[0]+"';"
+                    grant = cursor.execute(sql_show_grants)
+                    a = cursor.fetchall()
+                    #print sql_show_grants,json.dumps(a[0])
+                    priv = json.dumps(a[0])
+                except Exception,e:
+                    #print e
+                    priv = ""
+                
+                print rec[0]+"\t"+rec[1]+"\t"+priv
                 data.append(rec[0]+"\t"+rec[1])
             file_object = open('data.txt', 'w+')
             file_object.write("\n".join(data))

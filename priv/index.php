@@ -29,9 +29,9 @@
 				{display: 'È¨ÏÞ', name : 'priv', width : 450, sortable : true, align: 'left'}
 				],
 			buttons : [
-				{name: 'Ìí¼Ó', bclass: 'add', onpress : test},
-				{name: '±à¼­', bclass: 'edit', onpress : test},
-				{name: 'É¾³ý', bclass: 'delete', onpress : test},
+				{name: 'Ìí¼Ó', bclass: 'add', onpress : addUser},
+				{name: '±à¼­', bclass: 'edit', onpress : editUser},
+				{name: 'É¾³ý', bclass: 'delete', onpress : deleteUser},
 				{separator: true}
 				],
 			searchitems : [
@@ -48,8 +48,14 @@
 			width: 920,
 			height: 400
 		});
-		function test(){
+		function addUser(){
 			location = "adduser.php";
+		}
+		function editUser(){
+			location = "edituser.php";
+		}
+		function deleteUser(){
+			location = "deleteuser.php";
 		}
 		</script>
 
