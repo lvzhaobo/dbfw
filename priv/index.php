@@ -52,10 +52,12 @@
 			location = "adduser.php";
 		}
 		function editUser(){
-			location = "edituser.php";
+			var id = $("#user_select").val();
+			location = "edituser.php?id="+id;
 		}
 		function deleteUser(){
-			location = "deleteuser.php";
+			var id = $("#user_select").val();
+			location = "deleteuser.php"+id;
 		}
 		</script>
 
