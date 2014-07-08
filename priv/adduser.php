@@ -18,10 +18,25 @@
 	  <tr><th>用户名</th><td><input name="username" value=""/></td></tr>
 	  <tr><th>密码</th><td><input name="password" type="password" value=""/></td></tr>
 	  <tr><th>权限</th><td>
-	    <input type="checkbox" name="auth[1]" id="auth_1" value="SELECT" /><label for="auth_1">SELECT</label><br />
-		<input type="checkbox" name="auth[2]" id="auth_2" value="INSERT" /><label for="auth_2">INSERT</label><br />
-		<input type="checkbox" name="auth[3]" id="auth_3" value="UPDATE" /><label for="auth_3">UPDATE</label><br />
-		<input type="checkbox" name="auth[4]" id="auth_4" value="DELETE" /><label for="auth_4">DELETE</label><br />
+	    <fieldset style="float:left;">
+		  <?php 
+				$i = 0;
+				$priv_data = array("SELECT","INSERT","UPDATE","DELETE","FILE");
+				foreach($priv_data as $priv_item){
+					$i++;
+					echo '<input type="checkbox" name="auth['.$i.']" id="auth_'.$i.'" value="'.$priv_item.'" /><label for="auth_'.$i.'">'.$priv_item.'</label><br />';
+				}
+		  ?>
+		</fieldset>
+		<fieldset style="float:left;">
+		  <?php 
+				$priv_data = array("CREATE","ALERT","INDEX","DROP","CREATE_TMP_TABLE");
+				foreach($priv_data as $key=>$priv_item){
+					$i++;
+					echo '<input type="checkbox" name="auth['.$i.']" id="auth_'.$i.'" value="'.$priv_item.'" /><label for="auth_'.$i.'">'.$priv_item.'</label><br />';
+				}
+		  ?>
+		</fieldset>
 	  </td></tr>
 	  <tr><th></th><td></td></tr>
 	</table>

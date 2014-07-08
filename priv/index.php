@@ -52,11 +52,12 @@
 			location = "adduser.php";
 		}
 		function editUser(){
-			var id = $("#user_select").val();
+			var id = $('input[id="user_select"]:checked').val();
+			id = "aa@localhost"
 			location = "edituser.php?id="+id;
 		}
 		function deleteUser(){
-			var id = $("#user_select").val();
+			var id = $('input[id="user_select"]:checked').val();
 			location = "deleteuser.php"+id;
 		}
 		</script>

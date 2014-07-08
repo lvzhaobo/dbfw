@@ -22,8 +22,8 @@
 		list($user,$host) = explode("@",$_GET["id"]);
 		$id = array("User"=>$user,"Host"=>$host);
 		//var_dump(json_encode($id));
-		exec("python2.7 ../db_src/test.py getGrants ".addslashes(json_encode($id)),$output,$result);
-		var_dump($output,$result);
+		exec("python2.7 ../db_src/test.py getGrants ".addslashes(json_encode($id)),$data,$result);
+		var_dump($data);
 	?>
     <form action="db.php?action=edituser" method="post">
     <table>
@@ -31,18 +31,20 @@
 	  <tr><th>√‹¬Î</th><td><input name="password" type="password" /></td></tr>
 	  <tr><th>»®œﬁ</th><td>
 	    <fieldset style="float:left;">
-	      <input type="checkbox" name="auth['Select_priv']" id="auth_1" value="Select_priv" <?php echo $data["Select_priv"]=="Y"?"checked='checked'":""?>/><label for="auth_1">SELECT</label><br />
-		  <input type="checkbox" name="auth['Insert_priv']" id="auth_2" value="Insert_priv" <?php echo $data["Insert_priv"]=="Y"?"checked='checked'":""?>/><label for="auth_2">INSERT</label><br />
-		  <input type="checkbox" name="auth['Update_priv']" id="auth_3" value="Update_priv" <?php echo $data["Update_priv"]=="Y"?"checked='checked'":""?>/><label for="auth_3">UPDATE</label><br />
-		  <input type="checkbox" name="auth['Delete_priv']" id="auth_4" value="Delete_priv" <?php echo $data["Delete_priv"]=="Y"?"checked='checked'":""?>/><label for="auth_4">DELETE</label><br />
-		  <input type="checkbox" name="auth['File_priv']" id="auth_5" value="File_priv" <?php echo $data["File_priv"]=="Y"?"checked='checked'":""?>/><label for="auth_5">FILE</label><br />
+		  <?php 
+				$priv_data = array("SELECT","INSERT","UPDATE","DELETE","FILE");
+				foreach($priv_data as $key=>$priv_item){
+					echo '<input type="checkbox" name="auth['.$key.']" id="auth_'.$key.'" value="'.$priv_item.'" '. (preg_match("/".$priv_item."/",$data[0])?"checked='checked'":"").'/><label for="auth_'.$key.'">'.$priv_item.'</label><br />';
+				}
+		  ?>
 		</fieldset>
 		<fieldset style="float:left;">
-	      <input type="checkbox" name="auth['Create_priv']" id="auth_6" value="Create_priv" <?php echo $data["Create_priv"]=="Y"?"checked='checked'":""?>/><label for="auth_6">CREATE</label><br />
-		  <input type="checkbox" name="auth['Alter_priv']" id="auth_7" value="Alter_priv" <?php echo $data["Alter_priv"]=="Y"?"checked='checked'":""?>/><label for="auth_7">ALTER</label><br />
-		  <input type="checkbox" name="auth['Index_priv']" id="auth_8" value="Index_priv" <?php echo $data["Index_priv"]=="Y"?"checked='checked'":""?>/><label for="auth_8">INDEX</label><br />
-		  <input type="checkbox" name="auth['Drop_priv']" id="auth_9" value="Drop_priv" <?php echo $data["Drop_priv"]=="Y"?"checked='checked'":""?>/><label for="auth_9">DROP</label><br />
-		  <input type="checkbox" name="auth['Create_tmp_table_priv']" id="auth_10" value="Create_tmp_table_priv" <?php echo $data["Create_tmp_table_priv"]=="Y"?"checked='checked'":""?>/><label for="auth_10">CREATE TEMPORARY TABLES</label><br />
+		  <?php 
+				$priv_data = array("CREATE","ALERT","INDEX","DROP","CREATE_TMP_TABLE");
+				foreach($priv_data as $key=>$priv_item){
+					echo '<input type="checkbox" name="auth['.$key.']" id="auth_'.$key.'" value="'.$priv_item.'" '. (preg_match("/".$priv_item."/",$data[0])?"checked='checked'":"").'/><label for="auth_'.$key.'">'.$priv_item.'</label><br />';
+				}
+		  ?>
 		</fieldset>
 	  </td></tr>
 	  <tr><th></th><td></td></tr>
