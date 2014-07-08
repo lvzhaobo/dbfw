@@ -118,15 +118,16 @@ class mysql_db(object):
             priv_str = ""
             
             priv = []
+            print data["auth"]
             for item in data["auth"]:
                 priv.append(data["auth"][item])
-            priv_str = ",".join(data["auth"])
+            priv_str = ",".join(priv)
             print priv_str
             
             sql = "CREATE USER '"+data["username"]+"'@'localhost' IDENTIFIED BY '"+data["password"]+"';"
-            sql_1 = "GRANT all privileges ON * . * TO '"+data["username"]+"'@'localhost' IDENTIFIED BY '"+data["password"]+"';"
+            sql_1 = "GRANT "+priv_str+" ON * . * TO '"+data["username"]+"'@'localhost' IDENTIFIED BY '"+data["password"]+"';"
             #print sql_a,sql_1
-            #print sql,sql_1
+            print sql,sql_1
             sql_add_user = "insert into user (Host,User) values('%','"+data["username"]+"');"
             cursor.execute(sql)
             cursor.execute(sql_1)
@@ -151,11 +152,10 @@ class mysql_db(object):
         try:
             a = json.loads(data)
             cursor1 = conn.cursor()
-            print a["User"]
             sql_show_grants = "show grants for '"+a["User"]+"'@'"+a["Host"]+"';"
-            print sql_show_grants
-            a = cursor1.execute(sql_show_grants)
-            print a
+            cursor1.execute(sql_show_grants)
+            grants = cursor1.fetchall()
+            print grants
             
             conn.commit()
         except Exception,e:
@@ -172,7 +172,7 @@ def adduser():
 if __name__ == "__main__":
     opts, args = getopt.getopt(sys.argv[1:], "ha:")
     if(args[0] == "adduser"):
-        print "aa"
+        print "dbfw"
         a = mysql_db()
         a.adduser(args[1])
         

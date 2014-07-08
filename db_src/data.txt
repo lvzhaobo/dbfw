@@ -1,9 +1,0 @@
-localhost	root
-lvzhaobo	root
-127.0.0.1	root
-::1	root
-localhost	
-lvzhaobo	
-localhost	debian-sys-maint
-%	root
-%	lvzb
