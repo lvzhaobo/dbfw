@@ -32,6 +32,22 @@ class mysql_db(object):
 
         cursor.close()
         conn.close()
+    
+    def get_db_list(self):
+        try:
+            conn = mysql.connector.connect(host='localhost', user='root',passwd='111111',db='mysql')
+            cursor = conn.cursor()
+            sql = "show databases;"
+            cursor.execute(sql)
+            alldata = cursor.fetchall()
+        except Exception, e:
+            print e
+        
+        if alldata:
+            for rec in alldata:
+                print rec[0]
+        cursor.close()
+        conn.close()
         
     def adduser(self,post_data):
         print post_data
@@ -98,6 +114,7 @@ class mysql_db(object):
     
 if __name__ == "__main__":
     opts, args = getopt.getopt(sys.argv[1:], "ha:")
+    
     if(args[0] == "adduser"):
         print "dbfw"
         a = mysql_db()
@@ -110,3 +127,7 @@ if __name__ == "__main__":
     if args[0] == "getGrants":
         a = mysql_db()
         a.getGrants(args[1])
+    
+    if args[0] == "dblist":
+        a = mysql_db()
+        a.get_db_list()

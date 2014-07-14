@@ -20,7 +20,7 @@
 		</div>
 		<script type="text/javascript">
 		$("#flex1").flexigrid({
-			url: '../db_src/a.php?action=list',
+			url: '../db_src/a.php?action=dblist',
 			dataType: 'json',
 			colModel : [
 				{display: '', name : 'id', width : 40, sortable : true, align: 'left'},
