@@ -20,7 +20,7 @@
 		</div>
 		<script type="text/javascript">
 		$("#flex1").flexigrid({
-			url: '../db_src/a.php?action=list',
+			url: '../lib/getList.php',
 			dataType: 'json',
 			colModel : [
 				{display: '', name : 'id', width : 40, sortable : true, align: 'left'},
@@ -53,7 +53,7 @@
 		}
 		function editUser(){
 			var id = $('input[id="user_select"]:checked').val();
-			id = "aa@localhost"
+			//id = "aa@localhost"
 			location = "edituser.php?id="+id;
 		}
 		function deleteUser(){
@@ -61,28 +61,6 @@
 			location = "deleteuser.php"+id;
 		}
 		</script>
-
-        <?php/*
-            try{
-                exec("python2.7 ../test1.py");
-            }catch(Exception $e){
-                var_dump($e->getMessage());
-            }
-
-            $data = file_get_contents("../priv.txt");
-            $data_array = explode("\n",$data);
-            */
-            /*$conn = mysql_connect("localhost","root","");
-            mysql_select_db("mysql");
-            $result = mysql_query("select * from user;");
-            $data = array();
-            while($row = mysql_fetch_array($result)){
-                //var_dump($row);
-                //echo "<hr />";
-                $data[] = array('host'=>$row["Host"],'user'=>$row["User"],'password'=>$row["Password"]);
-            }*/
-            
-        ?>
 		<?php /*?>
         <div style="height:24px;padding:5px 2%;">
           <div style="float:left;">

@@ -11,17 +11,6 @@
 	<?php include "web/_nav.php"?>
 	<div id="content">
 	  <div id="main">
-	    <?php
-	    	$data = file_get_contents("data.txt");
-	    	$data_array = explode("\n",$data);
-	    	foreach($data_array as $item){
-	    		$item_array = explode("\t",$item);
-	    		echo $item."<br />";
-	    		foreach($item_array as $v){
-	    			//echo $v;
-	    		}
-	    	}
-	    ?>
 	    <?php 
 			include "priv/db.php";
 			$db = new my_user();

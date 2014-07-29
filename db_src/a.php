@@ -1,6 +1,8 @@
 <?php
-	$action = $_GET["action"];
-	exec("python2.7 test.py ".$action,$output,$result);
+	//$action = $_GET["action"];
+	$action = "list";
+	$db = new db();
+	//exec("python2.7 test.py ".$action,$output,$result);
 	
 	$data = array('page'=>1,'total'=>10);
 	foreach($output as $key=>$item){
