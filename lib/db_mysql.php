@@ -3,7 +3,10 @@ class db_mysql
 {
 	private $conn = "";
 	
-	public function __construct(){
+	public function __construct($user = "",$password = "",$host = ""){
+		$user = empty($user)?"root":$user;
+		$password = empty($password)?"":$password;
+		$host = empty($host)?"localhost":$host;
 		$this->conn = mysql_connect("localhost","root","");
 		mysql_select_db("mysql");
 	}
@@ -40,6 +43,15 @@ class db_mysql
 			return "";
 		//var_dump($data);
 		return $value[0];
+	}
+	
+	public function getProcesslist(){
+		$sql = "SHOW PROCESSLIST";
+		$result = mysql_query($sql);
+		while($row = mysql_fetch_array($result)){
+			$data[] = $row;
+		}
+		return $data;
 	}
 	
 	public function adduser($username,$password,$priv){

@@ -40,7 +40,8 @@ class my_user
 	}
 	
 	public function getStatus(){
-		$sql = "SHOW STATUS;";
+		$sql = "SHOW PROCESSLIST";
+		//$sql = "SHOW STATUS;";
 		$result = mysql_query($sql);
 		while($row = mysql_fetch_array($result)){
 			$data[] = $row;
