@@ -14,15 +14,8 @@
 	  <legend>±‡º≠”√ªß</legend>
 	  <div>
     <?php
-		//exec("python2.7 ../db_src/test.py list",$output,$result);
-		//var_dump($output);
-		//include 'db.php';
-		//$user = new my_user();
-		//$data = $user->getUserByName($_GET["user"]);
 		list($user,$host) = explode("@",$_GET["id"]);
 		$id = array("User"=>$user,"Host"=>$host);
-		//var_dump(json_encode($id));
-		//exec("python2.7 ../db_src/test.py getGrants ".addslashes(json_encode($id)),$data,$result);
 		include '../lib/db_mysql.php';
 		$db_mysql = new db_mysql();
 		$data = $db_mysql->getGrantByUserHost($user,$host);

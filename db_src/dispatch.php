@@ -1,4 +1,16 @@
 <?php
+	include '../lib/db_mysql.php';
+	//$action = $_GET["action"];
+	$db_mysql = new db_mysql();
+	$host = empty($_POST["host"])?"%":$_POST["host"];
+	$output = $db_mysql->adduser($host,$_POST["username"],$_POST["password"],join(",",$_POST["auth"]));
+	?>
+	<script type="text/javascript">
+	    location="../priv/index.php";
+	</script>
+	<?php 
+	var_dump($output);
+	die;
 	$a = "{username:b,password:b,auth:{1:SELECT,2:INSERT}}";
 	//var_dump($_POST,json_encode($_POST),$a,json_decode($a));die;
 	$action = $_GET['action'];

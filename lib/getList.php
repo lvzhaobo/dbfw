@@ -12,6 +12,6 @@
 		$username = $item["USER"];
 		$host = $item["HOST"];
 		$priv = $db_mysql->getGrantByUserHost($username,$host);
-		$data['rows'][] = array("id"=>$key,"cell"=>array("id"=>"<input type='checkbox' value='".$username."@".$host."' name='id' id='user_select'/>","host"=>$host,"username"=>$username,"priv"=>$priv));
+		$data['rows'][] = array("id"=>$key,"cell"=>array("id"=>"<input type='checkbox' value='".$username."@".$host."' name='id' id='user_select' width='20px;'/>","host"=>$host,"username"=>$username,"priv"=>$priv));
 	}
 	echo json_encode($data);

@@ -12,7 +12,7 @@ class db_mysql
 	}
 	
 	public function getUserList(){
-		$sql = "SELECT USER,HOST FROM user;";
+		$sql = "SELECT USER,HOST FROM user ORDER BY USER;";
 		$result = mysql_query($sql);
 		$data = array();
 		while($row = mysql_fetch_array($result)){
@@ -30,8 +30,8 @@ class db_mysql
 	
 	public function getGrantByUserHost($username = "",$host = ""){
 		$username = empty($username)?"*":$username;
-		$host = empty($host)?"*":$host;
-		$str = $username."@".$host;
+		$host = empty($host)?"%":$host;
+		$str = $username."@'".$host."'";
 		$sql = "SHOW GRANTS FOR ".$str;
 		//var_dump($sql);
 		$result = mysql_query($sql);
@@ -54,9 +54,9 @@ class db_mysql
 		return $data;
 	}
 	
-	public function adduser($username,$password,$priv){
-		$sql = "CREATE USER '".$username."'@'%' IDENTIFIED BY '".$password."';";
-		$sql1 = "GRANT ".$priv." ON * . * TO '".$username."'@'%' IDENTIFIED BY '".$password."';";
+	public function adduser($host,$username,$password,$priv){
+		$sql = "CREATE USER '".$username."'@'".$host."' IDENTIFIED BY '".$password."';";
+		$sql1 = "GRANT ".$priv." ON * . * TO '".$username."'@'".$host."' IDENTIFIED BY '".$password."';";
 		mysql_query($sql);
 		mysql_query($sql1);
 	}

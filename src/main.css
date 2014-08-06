@@ -24,6 +24,13 @@ div#content  {
 	margin:0 auto;
 	min-height:510px;
 	background-color: #FFFFFF;
+	font-size: 14px;
+}
+div#content th {
+	width: 100px;
+	text-align: right;
+	# padding: 0 6px 0 0;
+	font-weight: normal;
 }
 div#nav {
 	width: 100%;

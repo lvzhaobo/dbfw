@@ -13,11 +13,12 @@
 	  <fieldset>
 	  <legend>添加用户</legend>
 	  <div>
-    <form action="../db_src/dispatch.php?action=adduser" method="post">
+    <form action="../db_src/dispatch.php" method="post">
     <table>
-	  <tr><th>用户名</th><td><input name="username" value=""/></td></tr>
-	  <tr><th>密码</th><td><input name="password" type="password" value=""/></td></tr>
-	  <tr><th>权限</th><td>
+	  <tr><th><label for="host">主机</label></th><td><input name="host" value="" id="host"/></td></tr>
+	  <tr><th><label for="username">用户名</label></th><td><input name="username" value="" id="username"/></td></tr>
+	  <tr><th><label for="password">密码</label></th><td><input name="password" type="password" value="" id="password"/></td></tr>
+	  <tr><th><label for="">权限</label></th><td>
 	    <fieldset style="float:left;">
 		  <?php 
 				$i = 0;
@@ -30,7 +31,7 @@
 		</fieldset>
 		<fieldset style="float:left;">
 		  <?php 
-				$priv_data = array("CREATE","ALERT","INDEX","DROP","CREATE_TMP_TABLE");
+				$priv_data = array("CREATE","ALTER","INDEX","DROP","CREATE_TMP_TABLE");
 				foreach($priv_data as $key=>$priv_item){
 					$i++;
 					echo '<input type="checkbox" name="auth['.$i.']" id="auth_'.$i.'" value="'.$priv_item.'" /><label for="auth_'.$i.'">'.$priv_item.'</label><br />';
