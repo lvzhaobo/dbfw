@@ -28,12 +28,12 @@
 				{display: '主机', name : 'host', width : 180, sortable : true, align: 'left'},
 				{display: '连接数据库', name : 'db', width : 450, sortable : true, align: 'left'}
 				],
-			/*buttons : [
-				{name: '添加', bclass: 'add', onpress : addUser},
-				{name: '编辑', bclass: 'edit', onpress : editUser},
-				{name: '删除', bclass: 'delete', onpress : deleteUser},
+			buttons : [
+				{name: '创建连接', bclass: 'add', onpress : addUser},
+				{name: '编辑连接', bclass: 'edit', onpress : editUser},
+				{name: '断开连接', bclass: 'delete', onpress : deleteUser},
 				{separator: true}
-				],*/
+				],
 			sortname: "id",
 			sortorder: "asc",
 			usepager: true,
@@ -44,6 +44,17 @@
 			width: 920,
 			height: 400
 		});
+		function addUser(){
+			location = "create.php";
+		}
+		function editUser(){
+			var id = $('input[id="user_select"]:checked').val();
+			location = "edituser.php?id="+id;
+		}
+		function deleteUser(){
+			var id = $('input[id="user_select"]:checked').val();
+			location = "deleteuser.php"+id;
+		}
 		</script>
         </div>
       <div class="clearfloat"></div>
