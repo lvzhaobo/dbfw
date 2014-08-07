@@ -7,7 +7,7 @@ class db_mysql
 		$user = empty($user)?"root":$user;
 		$password = empty($password)?"":$password;
 		$host = empty($host)?"localhost":$host;
-		$this->conn = mysql_connect("localhost","root","");
+		$this->conn = mysql_connect($host,$user,$password);
 		mysql_select_db("mysql");
 	}
 	

@@ -16,20 +16,20 @@
 		  <div id="title">
 		    <span style="line-height:32px;">连接信息</span>
 		  </div>
-          <div id="flex1" class="flex1" style="width:100%;height:100%;"></div>
+          <div id="flex1" class="flex1" style="width:100%;height:320px;"></div>
 		</div>
 		<script type="text/javascript">
 		$("#flex1").flexigrid({
 			url: 'lib/getProcesslist.php',
 			dataType: 'json',
 			colModel : [
-				{display: 'ID', name : 'id', width : 40, sortable : true, align: 'left'},
+				{display: 'ID', name : 'id', width : 42, sortable : true, align: 'left'},
 				{display: '用户名', name : 'user', width : 180, sortable : true, align: 'left'},
 				{display: '主机', name : 'host', width : 180, sortable : true, align: 'left'},
 				{display: '连接数据库', name : 'db', width : 450, sortable : true, align: 'left'}
 				],
 			buttons : [
-				{name: '创建连接', bclass: 'add', onpress : addUser},
+				{name: '创建连接', bclass: 'add', onpress : createConn},
 				{name: '编辑连接', bclass: 'edit', onpress : editUser},
 				{name: '断开连接', bclass: 'delete', onpress : deleteUser},
 				{separator: true}
@@ -42,9 +42,9 @@
 			rp: 15,
 			showTableToggleBtn: true,
 			width: 920,
-			height: 400
+			height: 320
 		});
-		function addUser(){
+		function createConn(){
 			location = "create.php";
 		}
 		function editUser(){
