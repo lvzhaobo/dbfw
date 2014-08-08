@@ -70,6 +70,25 @@ class db_mysql
 		return $data;
 	}
 	
+	public function getDbList(){
+		$sql = "SHOW DATABASES;";
+		$result = mysql_query($sql);
+		while($row = mysql_fetch_array($result)){
+			$data[] = $row;
+		}
+		return $data;
+	}
+	
+	public function getTableList($db){
+		mysql_select_db($db);
+		$sql = "SHOW Tables;";
+		$result = mysql_query($sql);
+		while($row = mysql_fetch_array($result)){
+			$data[] = $row;
+		}
+		return $data;
+	}
+	
 	public function close(){
 		mysql_close($this->conn);
 	}

@@ -16,17 +16,19 @@
 		  <div id="title">
 		    <span style="line-height:32px;">Privilege</span>
 		  </div>
-          <div id="flex1" class="flex1" style="width:100%;height:100%;"></div>
+		  <div style="float:left;">
+          <div id="flex1" class="flex1" style="width:100%;height:100%;float:left;"></div>
+		  </div>
+		  <div style="float:left;margin-left:10px;">
+		  <div id="flex2" class="flex2" style="width:100%;height:100%;float:left;"></div>
+		  </div>
 		</div>
 		<script type="text/javascript">
 		$("#flex1").flexigrid({
-			url: '../db_src/a.php?action=dblist',
+			url: '../lib/db.php?action=list',
 			dataType: 'json',
 			colModel : [
-				{display: '', name : 'id', width : 40, sortable : true, align: 'left'},
-				{display: '主机', name : 'host', width : 180, sortable : true, align: 'left'},
-				{display: '用户名', name : 'username', width : 180, sortable : true, align: 'left'},
-				{display: '权限', name : 'priv', width : 450, sortable : true, align: 'left'}
+				{display: '数据库', name : 'db', width : 180, sortable : true, align: 'left'}
 				],
 			buttons : [
 				{name: '添加', bclass: 'add', onpress : addUser},
@@ -41,11 +43,11 @@
 			sortname: "iso",
 			sortorder: "asc",
 			usepager: true,
-			title: '用户权限',
+			title: '数据库列表',
 			useRp: true,
 			rp: 15,
 			showTableToggleBtn: true,
-			width: 920,
+			width: 360,
 			height: 400
 		});
 		function addUser(){
@@ -60,64 +62,33 @@
 			var id = $('input[id="user_select"]:checked').val();
 			location = "deleteuser.php"+id;
 		}
+		$("#flex2").flexigrid({
+			url: '../lib/db.php?action=listTable&db=<?php echo $_GET["db"]?>',
+			dataType: 'json',
+			colModel : [
+				{display: '数据表', name : 'table', width : 260, sortable : true, align: 'left'}
+				],
+			buttons : [
+				{name: '添加', bclass: 'add', onpress : addUser},
+				{name: '编辑', bclass: 'edit', onpress : editUser},
+				{name: '删除', bclass: 'delete', onpress : deleteUser},
+				{separator: true}
+				],
+			searchitems : [
+				{display: 'ISO', name : 'host'},
+				{display: 'Name', name : 'username', isdefault: true}
+				],
+			sortname: "iso",
+			sortorder: "asc",
+			usepager: true,
+			title: '<?php echo $_GET["db"]?>中的数据表',
+			useRp: true,
+			rp: 15,
+			showTableToggleBtn: true,
+			width: 540,
+			height: 400
+		});
 		</script>
-
-        <?php/*
-            try{
-                exec("python2.7 ../test1.py");
-            }catch(Exception $e){
-                var_dump($e->getMessage());
-            }
-
-            $data = file_get_contents("../priv.txt");
-            $data_array = explode("\n",$data);
-            */
-            /*$conn = mysql_connect("localhost","root","");
-            mysql_select_db("mysql");
-            $result = mysql_query("select * from user;");
-            $data = array();
-            while($row = mysql_fetch_array($result)){
-                //var_dump($row);
-                //echo "<hr />";
-                $data[] = array('host'=>$row["Host"],'user'=>$row["User"],'password'=>$row["Password"]);
-            }*/
-            
-        ?>
-		<?php /*?>
-        <div style="height:24px;padding:5px 2%;">
-          <div style="float:left;">
-            <span style="font-weight:bold;">用户权限</span>
-          </div>
-          <div style="float:right;">
-            <a href="adduser.php">添加用户</a>
-          </div>
-        </div>
-        <table style="margin:0 2% 10px 2%;width:96%;">
-          <thead style="background-color:#E5E5E5;">
-            <tr><td width="140px;">用户</td><td width="200px;">主机</td><td width="280px;">权限</td><td width="100px;">操作</td></tr>
-          </thead>
-          <tbody>
-            <?php
-                foreach($data_array as $item_v){
-                    $item = explode("\t",$item_v);
-                    $user_host = "'".$item[0]."'@'".$item[1]."'";
-                    if(empty($item[0]))
-                        $item[0] = "任意";
-                    //var_dump($user_host);
-                    //$grant = mysql_query("show grants for ".$user_host.";");
-                    //if(!$grant)
-                        //var_dump("show grants for ".$user_host.";");echo "-----------------------------";
-                    $tmp_grant_str = "";
-                    //while($row = mysql_fetch_array($grant)){
-                        //$tmp_grant_str .= $row[0]."<br />";
-                    //}
-                    $tmp_grant_str = "";
-                    echo "<tr><td>".$item[0]."</td><td>".$item[1]."</td><td>".$tmp_grant_str."</td><td><a href='edituser.php?user=".$item[0]."'>编辑</a></td></tr>";
-                }
-            ?>
-            </tbody>
-          </table>
-		  <?php */?>
         </div>
       <div class="clearfloat"></div>
     </div>
