@@ -14,7 +14,7 @@
       <div id="main" style="">
 	    <div style="padding:10px 20px;">
 		  <div id="title">
-		    <span style="line-height:32px;">Privilege</span>
+		    <span style="line-height:32px;">数据库</span>
 		  </div>
 		  <div style="float:left;">
           <div id="flex1" class="flex1" style="width:100%;height:100%;float:left;"></div>
@@ -51,19 +51,18 @@
 			height: 400
 		});
 		function addUser(){
-			location = "adduser.php";
+			location = "create_db.php";
 		}
 		function editUser(){
 			var id = $('input[id="user_select"]:checked').val();
-			id = "aa@localhost"
-			location = "edituser.php?id="+id;
+			location = "edit_db.php?id="+id;
 		}
 		function deleteUser(){
 			var id = $('input[id="user_select"]:checked').val();
-			location = "deleteuser.php"+id;
+			location = "delete_db.php"+id;
 		}
 		$("#flex2").flexigrid({
-			url: '../lib/db.php?action=listTable&db=<?php echo $_GET["db"]?>',
+			url: '../lib/db.php?action=listTable&db=<?php echo @$_GET["db"]?>',
 			dataType: 'json',
 			colModel : [
 				{display: '数据表', name : 'table', width : 260, sortable : true, align: 'left'}
@@ -81,7 +80,7 @@
 			sortname: "iso",
 			sortorder: "asc",
 			usepager: true,
-			title: '<?php echo $_GET["db"]?>中的数据表',
+			title: '<?php echo isset($_GET["db"])?@$_GET["db"]."中的数据表":"未选中数据库"?>',
 			useRp: true,
 			rp: 15,
 			showTableToggleBtn: true,
