@@ -2,9 +2,12 @@
 class db_sqlite
 {
 	private $conn = "";
+	private $sqlite;
+	private $_db_file;
 	
 	public function __construct($path){
-		$sqlite = new Sqlite3($path);
+		$this->sqlite = new Sqlite3($path);
+		$this->_db_file = $path;
 	}
 	
 	public function getUserList(){
@@ -67,21 +70,20 @@ class db_sqlite
 	}
 	
 	public function getDbList(){
-		$sql = "SHOW DATABASES;";
-		$result = mysql_query($sql);
-		while($row = mysql_fetch_array($result)){
-			$data[] = $row;
-		}
-		return $data;
+		return array(array("Database"=>$this->_db_file));
 	}
 	
 	public function getTableList($db){
-		mysql_select_db($db);
-		$sql = "SHOW Tables;";
-		$result = mysql_query($sql);
-		while($row = mysql_fetch_array($result)){
-			$data[] = $row;
+		$db = new Sqlite3($db);
+		//$a = $db->exec("create table lv_2 (id integer, name varchar(128))");
+		$b = $db->exec("select * from lv_2;");
+		$c = $db->query("select * from sqlite_master where type='table';");
+		//var_dump($a,$b,$c->fetchArray());
+		$data = array();
+		while($row = $c->fetchArray()){
+			$data[] = array($row["name"]);
 		}
+		//var_dump($data);
 		return $data;
 	}
 	
